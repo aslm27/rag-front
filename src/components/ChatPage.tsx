@@ -11,9 +11,19 @@ interface ChatPageProps {
   isLoading: boolean;
   onToggleSidebar: () => void;
   sidebarPinned?: boolean;
+  currentUserName: string;
+  onLogout: () => void;
 }
 
-export default function ChatPage({ messages, onSend, isLoading, onToggleSidebar, sidebarPinned }: ChatPageProps) {
+export default function ChatPage({
+  messages,
+  onSend,
+  isLoading,
+  onToggleSidebar,
+  sidebarPinned,
+  currentUserName,
+  onLogout,
+}: ChatPageProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -36,6 +46,8 @@ export default function ChatPage({ messages, onSend, isLoading, onToggleSidebar,
           {hasMessages && <span className="top-bar-title">ClinicalRAG</span>}
         </div>
         <div className="top-bar-right">
+          <div className="auth-user-chip" title={currentUserName}>{currentUserName}</div>
+          <button className="auth-logout-btn" onClick={onLogout}>Logout</button>
           {hasMessages && (
             <span className="method-selector">
               <Microscope size={14} />

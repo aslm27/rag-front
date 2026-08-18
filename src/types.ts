@@ -56,6 +56,20 @@ export interface HealthResponse {
   index_loaded: boolean;
 }
 
+export interface UserProfile {
+  id: string;
+  email: string;
+  full_name: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AuthResponse {
+  access_token: string;
+  token_type: string;
+  user: UserProfile;
+}
+
 export interface Message {
   id: string;
   role: "user" | "assistant";
